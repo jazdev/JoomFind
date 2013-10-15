@@ -2,7 +2,6 @@
 
 import sys,  re,  urllib,  urllib2,  string, time, os
 from urllib2 import Request, urlopen, URLError, HTTPError
-from urlparse import urlparse
 
 joomla_version="undefined"   #used for joomla veersin info
 
@@ -50,8 +49,8 @@ def test_url():
     global provided_url
     global verbose_flag
     # extracting url
-    provided_url = urlparse(provided_url).scheme+"://"+urlparse(provided_url).netloc
-    print provided_url    
+    provided_url = urlparse(url).netloc
+        
     if verbose_flag: print "\t[.] Checking if connection can be established...",# + provided_url
     try:
         response = urllib2.urlopen(provided_url)
@@ -71,25 +70,21 @@ def test_url():
 def scan_target_metatag():
     target_meta_url=provided_url+"/index.php"
     if verbose_flag: print "\t[.] Trying to access meta tag information...", #+ target_meta_url
-    try:
-    	response = urllib2.urlopen(target_meta_url)
-    	html = response.read(2000)
-    	#print html
-    	# Now extract the interesting information
-    	get_metatag = string.find(html,  "Joomla! - Open Source Content Management")
+    response = urllib2.urlopen(target_meta_url)
+    html = response.read(2000)
+    #print html
+    # Now extract the interesting information
+    get_metatag = string.find(html,  "Joomla! - Open Source Content Management")
 
-    	# If  the target is not vulnerable exit
-    	if get_metatag == -1:
-            meta_flag=0
-            if verbose_flag: print "Failed"
-        else:
-            meta_flag=1
-            if verbose_flag: print "Success"
-        #print "meta flag="+str(meta_flag)
-        return meta_flag
-
-    except:
-	if verbose_flag: print "Failed"
+    # If  the target is not vulnerable exit
+    if get_metatag == -1:
+        meta_flag=0
+        if verbose_flag: print "Failed"
+    else:
+        meta_flag=1
+        if verbose_flag: print "Success"
+    #print "meta flag="+str(meta_flag)
+    return meta_flag
 
 # Tests whether the URL has a '/administrator' login page
 def scan_admin_url():
@@ -254,8 +249,7 @@ def process_from_file():
             f=open(default_input_path)
         cwd=os.getcwd()
         file_path = cwd + path_slash + f.name
-	# extracting url's to list from file
-        start_urls = [url.strip() for url in f.readlines() if url[0] not in ['#',' ',"\n"]]
+        start_urls = [url.strip() for url in f.readlines() if url[0]!='#']
         if not start_urls:
             print "File is empty. Add some URL(s) first.\n"
             f.close()
