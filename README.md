@@ -14,7 +14,7 @@ Usage:
 
 	python JoomFind.py -f filepath [-v]
 	
-	Put URL(s) to scan in a newline delimited file (see sample file in /tests)
+	Put URL(s) to scan in a newline delimited file (see sample input file in /tests)
 
 	URL(s) must point to homepage (root) where the CMS has been installed
 
@@ -25,3 +25,7 @@ Options:
 	-v, --verbose  (show detailed output)
 
 	--help         (displays this help text)
+
+Results:
+
+The results are stored in a seperate file. (see sample output file in /tests)
