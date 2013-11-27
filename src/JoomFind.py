@@ -23,13 +23,13 @@ else:
 def print_usage():
     print ""
     print ""
-    print " JoomFind v 1.0"
+    print " JoomFind v0.1"
     print ""
     print " Script made by Jasdev Singh"
     print ""
-    print "  Disclaimer : This script is made only for educational and testing "
-    print "  purposes. The creator is not responsible for any malicious actions "
-    print "  that you perform with this script. "
+    print "  This script is made only for educational and offline self-testing  "
+    print "  purposes. The creator is not responsible or accountable for any  "
+    print "  damage or loss caused that you perform with this script. "
     print ""
     print "  Usage example:"
     print '\tpython joomfind.py -f filepath | -v'
@@ -331,7 +331,7 @@ def main():
             global default_output_path
             default_input_path = sys.argv[2]
             #print default_input_path
-            default_output_path=default_input_path + "_results.txt"
+            default_output_path=default_input_path[:-4] + "_results.txt"
     if os.name == "nt":
         os.system('cls')
     else:

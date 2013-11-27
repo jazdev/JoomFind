@@ -2,9 +2,9 @@
 
 	Scanning 1 URL(s) 
 
-	Date\Time : Wed Nov 27 05:05:46 2013
+	Date\Time : Wed Nov 27 05:26:49 2013
 
 	Input file path : urls.txt
 
 
-BAD URL --> http://www.joomla.org
+JOOMLA USED (version : 2.5.1) --> http://www.joomla.org
