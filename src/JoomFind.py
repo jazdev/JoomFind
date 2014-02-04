@@ -21,6 +21,12 @@ else:
 
 # Prints usage
 def print_usage():
+    """
+	print_usage()
+	
+	Prints help screen and exits.
+
+    """
     print ""
     print ""
     print " JoomFind v0.1"
@@ -47,6 +53,12 @@ def print_usage():
 
 # Testing if URL is reachable, with error handling
 def test_url():
+    """
+	test_url()
+	
+	Checks whether URL is rechable. Prints relevant infomation.
+
+    """
     global provided_url
     global verbose_flag
     # extracting url
@@ -69,6 +81,14 @@ def test_url():
 
 # Scans for the HTML meta tag information
 def scan_target_metatag():
+    """
+	scan_target_metatag()
+	
+	Scans the meta-tag of the website. 
+
+	The meta-tag has information that can lead to the detection of Joomla.
+
+    """
     target_meta_url=provided_url+"/index.php"
     if verbose_flag: print "\t[.] Trying to access meta tag information...", #+ target_meta_url
     try:
@@ -93,6 +113,14 @@ def scan_target_metatag():
 
 # Tests whether the URL has a '/administrator' login page
 def scan_admin_url():
+    """
+	scan_admin_url()
+	
+	Scans the administrator URL of the website. 
+
+	The administrator URL, if reachable, is a clue that Joomla is being used.
+
+    """
     target_admin_url=provided_url+"/administrator/index.php"
     if verbose_flag: print "\t[.] Trying to access admin login page...", #+ target_admin_url
     try:
@@ -110,6 +138,14 @@ def scan_admin_url():
 
 # Scans content of 'com_content' component
 def scan_com_content():
+    """
+	scan_com_content()
+	
+	Scans the content.xml file of the default component of the website. 
+
+	The content.xml file, if readable, is a clue that Joomla is being used.
+
+    """
     target_com_content=provided_url+"/administrator/components/com_content/content.xml"
     if verbose_flag: print "\t[.] Trying to access com_content component...", #+ target_com_content
     try:
@@ -133,6 +169,14 @@ def scan_com_content():
 
 # Scans the robots.txt file
 def scan_robots_txt():
+    """
+	scan_robots_txt()
+	
+	Scans the robots.txt file of website. 
+
+	The robots.txt file, if readable, has clues that Joomla is being used.
+
+    """
     target_robots_txt=provided_url+"/robots.txt"
     if verbose_flag: print "\t[.] Trying to access robots.txt file...",#+target_robots_txt
     try:
@@ -156,6 +200,14 @@ def scan_robots_txt():
 
 # Scans the htaccess.txt file
 def scan_htaccess():
+    """
+	scan_htaccess()
+	
+	Scans the htaccess file of website. 
+
+	The htaccess file, if readable, has clues that Joomla is being used.
+
+    """
     target_htacess=provided_url+"/htaccess.txt"
     if verbose_flag: print "\t[.] Trying to access htaccess file...",#+target_htacess
     try:
@@ -179,10 +231,26 @@ def scan_htaccess():
 
 # Scans the system.css file    
 def scan_system_css():
+    """
+	scan_system_css()
+	
+	Scans the system.css file of website. 
+
+	The system.css file, if readable, has clues that Joomla is being used.
+
+    """
     pass
 
 # Scans the MooTools.js file
 def scan_mootools():
+    """
+	scan_mootools()
+	
+	Scans the mootools.js file of website. 
+
+	The mootools.js file, if readable, has clues that Joomla is being used.
+
+    """
     target_mootools=provided_url+"/media/system/js/mootools-more.js"
     if verbose_flag: print "\t[.] Trying to access MooTools file...", #+ target_mootools
     try:
@@ -208,6 +276,14 @@ def scan_mootools():
 
 # Scans the en-GB.xml file
 def scan_engb_ini():
+    """
+	scan_engb_ini()
+	
+	Scans the en-GB.ini file of website. 
+
+	The en-GB.ini file, if readable, has clues that Joomla is being used.
+
+    """
     target_engb=provided_url+"/language/en-GB/en-GB.xml"
     if verbose_flag: print "\t[.] Trying to access en-GB file...", #+ target_engb
     try:
@@ -236,7 +312,12 @@ def scan_engb_ini():
 
 # Computes the result of the scans
 def compute_result(a,b,c,d,e,f,g):
-    
+    """
+	compute_result()
+	
+	Computes the final result. 
+
+    """
     if (a or b or c or d or e or f or g)and ((a+b+c+d+e+f+g)>=3):
         return 1
     else:
@@ -244,6 +325,12 @@ def compute_result(a,b,c,d,e,f,g):
 
 # Reads URL's from an input file and processes them
 def process_from_file():
+    """
+	process_from_file()
+	
+	Starts processing the URL's from the input file. 
+
+    """
     global default_input_path
     print "JoomFind v 1.0"
     print "\n\nTrying to read URL(s) form " + default_input_path + " file...\n"
@@ -284,6 +371,12 @@ def process_from_file():
 
 # Calls other scans and writes results to output file
 def processing():
+    """
+	processing()
+	
+	Calls other helper functions. 
+
+    """
     err=test_url()
     of=open(default_output_path,'a+')
     if err!=0:           
@@ -309,6 +402,12 @@ def processing():
 
 # main method
 def main():
+    """
+	main()
+	
+	Starting point of program execution. 
+
+    """
 # Checking if argument was provided
     if len(sys.argv) <=1:
         print_usage()
