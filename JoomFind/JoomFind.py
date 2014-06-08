@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import sys,  re,  urllib,  urllib2,  string, time, os
 from urllib2 import Request, urlopen, URLError, HTTPError
@@ -401,7 +401,7 @@ def processing():
     return 0
 
 # main method
-def main():
+def scanCMS():
     """
 	main()
 	
@@ -415,7 +415,7 @@ def main():
         
     for arg in sys.argv:
         # Checking if help was called
-        if arg == "--help":
+        if arg == "-h" or arg == "--help":
             print_usage()
             sys.exit(1)
             
@@ -425,12 +425,15 @@ def main():
             verbose_flag=1
 
         # Checking for input file
-        if arg == "-f":
+        if arg == "-f" or arg == "--file":
             global default_input_path
             global default_output_path
             default_input_path = sys.argv[2]
-            #print default_input_path
             default_output_path=default_input_path[:-4] + "_results.txt"
+
+        #if arg == "-u" or arg == "--url":
+        #    input_url = sys.argv[2]
+	    
     if os.name == "nt":
         os.system('cls')
     else:
@@ -440,6 +443,6 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    scanCMS()
     
 #EOF
