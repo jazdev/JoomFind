@@ -401,7 +401,7 @@ def processing():
     return 0
 
 # main method
-def scanCMS():
+def main():
     """
 	main()
 	
@@ -443,6 +443,6 @@ def scanCMS():
 
 
 if __name__=="__main__":
-    scanCMS()
+    main()
     
 #EOF
